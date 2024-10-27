@@ -35,15 +35,9 @@ forge script DeployUpgrade.s.sol \
   --rpc-url $ETH_RPC_URL \
   --private-key $PRIVATE_KEY \
   --etherscan-api-key $ETHERSCAN_API_KEY \
-  --sig "deploy(address,address,address,address,address,address,address,address)" \
+  --sig "deploy(address,address,address)" \
   $PROXY_ADMIN \
   $SYSTEM_OWNER_SAFE \
   $SUPERCHAIN_CONFIG_PROXY \
-  $DISPUTE_GAME_FACTORY_IMPL \
-  $DELAYED_WETH_IMPL \
-  $PREIMAGE_ORACLE_IMPL \
-  $MIPS_IMPL \
-  $OPTIMISM_PORTAL_2_IMPL \
   --broadcast \
-  --slow \
-  --verify
+  --slow

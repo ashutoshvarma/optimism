@@ -41,23 +41,7 @@ contract DeployUpgrade is Deploy, StdAssertions {
     /// @param _proxyAdmin Address of the ProxyAdmin contract.
     /// @param _systemOwnerSafe Address of the SystemOwnerSafe contract.
     /// @param _superchainConfigProxy Address of the SuperchainConfigProxy contract.
-    /// @param _disputeGameFactoryImpl Address of the DisputeGameFactory implementation contract.
-    /// @param _delayedWethImpl Address of the DelayedWETH implementation contract.
-    /// @param _preimageOracleImpl Address of the PreimageOracle implementation contract.
-    /// @param _mipsImpl Address of the MIPS implementation contract.
-    /// @param _optimismPortal2Impl Address of the OptimismPortal2 implementation contract.
-    function deploy(
-        address _proxyAdmin,
-        address _systemOwnerSafe,
-        address _superchainConfigProxy,
-        address _disputeGameFactoryImpl,
-        address _delayedWethImpl,
-        address _preimageOracleImpl,
-        address _mipsImpl,
-        address _optimismPortal2Impl
-    )
-        public
-    {
+    function deploy(address _proxyAdmin, address _systemOwnerSafe, address _superchainConfigProxy) public {
         console.log("Deploying contracts required to upgrade from v1.3.0 to v1.6.0");
         console.log("Using PERMISSIONED proof system");
 
@@ -72,11 +56,6 @@ contract DeployUpgrade is Deploy, StdAssertions {
 
         // Prank shared contracts.
         prankDeployment("SuperchainConfigProxy", superchainConfigProxy);
-        prankDeployment("DisputeGameFactory", _disputeGameFactoryImpl);
-        prankDeployment("DelayedWETH", _delayedWethImpl);
-        prankDeployment("PreimageOracle", _preimageOracleImpl);
-        prankDeployment("Mips", _mipsImpl);
-        prankDeployment("OptimismPortal2", _optimismPortal2Impl);
 
         // Deploy proxy contracts.
         deployERC1967Proxy("DisputeGameFactoryProxy");
@@ -87,6 +66,13 @@ contract DeployUpgrade is Deploy, StdAssertions {
         // We can't use a pre-created implementation because the ASR implementation holds an
         // immutable variable that points at the DisputeGameFactoryProxy.
         deployAnchorStateRegistry();
+        // Deploy rest of FP contract impl, we can't use standard address
+        // as they have hardcoded delay time
+        deployOptimismPortal2();
+        deployDisputeGameFactory();
+        deployDelayedWETH();
+        deployPreimageOracle();
+        deployMips();
 
         // Initialize proxy contracts.
         initializeDisputeGameFactoryProxy();
@@ -356,5 +342,10 @@ contract DeployUpgrade is Deploy, StdAssertions {
                 DisputeGameFactory(mustGetAddress("DisputeGameFactoryProxy")).gameImpls(GameTypes.PERMISSIONED_CANNON)
             )
         );
+        console.log("    5. OptimismPortal2: %s", mustGetAddress("OptimismPortal2"));
+        console.log("    6. DisputeGameFactory: %s", mustGetAddress("DisputeGameFactory"));
+        console.log("    7. DelayedWETH: %s", mustGetAddress("DelayedWETH"));
+        console.log("    8. PreimageOracle: %s", mustGetAddress("PreimageOracle"));
+        console.log("    9. Mips: %s", mustGetAddress("Mips"));
     }
 }

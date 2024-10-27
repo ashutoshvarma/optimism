@@ -67,6 +67,11 @@ export ANCHOR_STATE_REGISTRY_PROXY=$(grep "1. AnchorStateRegistryProxy:" deploy.
 export ANCHOR_STATE_REGISTRY_IMPL=$(grep "2. AnchorStateRegistryImpl:" deploy.log | awk '{print $3}')
 export PERMISSIONED_DELAYED_WETH_PROXY=$(grep "3. PermissionedDelayedWETHProxy:" deploy.log | awk '{print $3}')
 export PERMISSIONED_DISPUTE_GAME=$(grep "4. PermissionedDisputeGame:" deploy.log | awk '{print $3}')
+export OPTIMISM_PORTAL_2_IMPL=$(grep "5. OptimismPortal2:" deploy.log | awk '{print $3}')
+export DISPUTE_GAME_FACTORY_IMPL=$(grep "6. DisputeGameFactory:" deploy.log | awk '{print $3}')
+export DELAYED_WETH_IMPL=$(grep "7. DelayedWETH:" deploy.log | awk '{print $3}')
+export PREIMAGE_ORACLE_IMPL=$(grep "8. PreimageOracle:" deploy.log | awk '{print $3}')
+export MIPS_IMPL=$(grep "9. Mips:" deploy.log | awk '{print $3}')
 
 # Make sure everything was extracted properly
 reqenv "DISPUTE_GAME_FACTORY_PROXY"
@@ -74,6 +79,11 @@ reqenv "ANCHOR_STATE_REGISTRY_PROXY"
 reqenv "ANCHOR_STATE_REGISTRY_IMPL"
 reqenv "PERMISSIONED_DELAYED_WETH_PROXY"
 reqenv "PERMISSIONED_DISPUTE_GAME"
+reqenv "OPTIMISM_PORTAL_2_IMPL"
+reqenv "DISPUTE_GAME_FACTORY_IMPL"
+reqenv "DELAYED_WETH_IMPL"
+reqenv "PREIMAGE_ORACLE_IMPL"
+reqenv "MIPS_IMPL"
 
 # Generate deployments.json with extracted addresses
 cat << EOF > "deployments.json"
@@ -82,7 +92,12 @@ cat << EOF > "deployments.json"
   "AnchorStateRegistryProxy": "$ANCHOR_STATE_REGISTRY_PROXY",
   "AnchorStateRegistryImpl": "$ANCHOR_STATE_REGISTRY_IMPL",
   "PermissionedDelayedWETHProxy": "$PERMISSIONED_DELAYED_WETH_PROXY",
-  "PermissionedDisputeGame": "$PERMISSIONED_DISPUTE_GAME"
+  "PermissionedDisputeGame": "$PERMISSIONED_DISPUTE_GAME",
+  "OptimismPortal2": "$OPTIMISM_PORTAL_2_IMPL",
+  "DisputeGameFactory": "$DISPUTE_GAME_FACTORY_IMPL",
+  "DelayedWETH": "$DELAYED_WETH_IMPL",
+  "PreimageOracle": "$PREIMAGE_ORACLE_IMPL",
+  "Mips": "$MIPS_IMPL"
 }
 EOF
 
@@ -125,9 +140,9 @@ cat << EOF > "standard-addresses.json"
 EOF
 
 # Copy results into output directory
-cp deploy.log /outputs/deploy.log
-cp bundle.json /outputs/bundle.json
-cp validation.txt /outputs/validation.txt
-cp deployments.json /outputs/deployments.json
-cp standard-addresses.json /outputs/standard-addresses.json
-cp $TRANSACTIONS_JSON_PATH /outputs/transactions.json
+cp deploy.log outputs/deploy.log
+cp bundle.json outputs/bundle.json
+cp validation.txt outputs/validation.txt
+cp deployments.json outputs/deployments.json
+cp standard-addresses.json outputs/standard-addresses.json
+cp $TRANSACTIONS_JSON_PATH outputs/transactions.json
