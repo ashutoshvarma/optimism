@@ -139,7 +139,7 @@ fetch_standard_address() {
     fi
 
     # Extract the implementation address for the specified contract
-    local address=$(echo "$section_content" | ggrep -oP "${contract_name} *= *\{.*(address|implementation_address) *= *\"\K[^\"]+") || true
+    local address=$(echo "$section_content" | grep -oP "${contract_name} *= *\{.*(address|implementation_address) *= *\"\K[^\"]+") || true
 
     # Error if not found
     if [ -z "$address" ]; then
@@ -182,7 +182,7 @@ fetch_superchain_config_address() {
     fi
 
     # Extract the superchain_config_addr from the TOML content
-    local superchain_config_addr=$(echo "${CACHED_TOML_CONTENT[$toml_url]}" | ggrep "superchain_config_addr" | awk -F '"' '{print $2}')
+    local superchain_config_addr=$(echo "${CACHED_TOML_CONTENT[$toml_url]}" | grep "superchain_config_addr" | awk -F '"' '{print $2}')
 
     # Error if not found
     if [ -z "$superchain_config_addr" ]; then
