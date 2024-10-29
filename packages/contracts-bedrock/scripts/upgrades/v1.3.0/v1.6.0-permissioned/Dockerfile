@@ -25,10 +25,10 @@ ENV PATH="/root/.foundry/bin:${PATH}"
 WORKDIR /app
 
 # Clone the repository
-RUN git clone https://github.com/ashutoshvarma/optimism.git .
+RUN git clone https://github.com/ethereum-optimism/optimism.git .
 
 # Check out the target branch
-RUN git checkout ash/op-contracts/v1.6.0/non-superchain-upgrade
+RUN git checkout perm/op-contracts/v1.6.0
 
 # Set the working directory to the root of the monorepo
 WORKDIR /app

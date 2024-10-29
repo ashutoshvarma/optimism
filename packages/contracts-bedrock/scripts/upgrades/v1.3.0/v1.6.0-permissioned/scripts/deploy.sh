@@ -40,5 +40,4 @@ forge script DeployUpgrade.s.sol \
   $SYSTEM_OWNER_SAFE \
   $SUPERCHAIN_CONFIG_PROXY \
   --broadcast \
-  --slow \
-  --verify
+  --slow
