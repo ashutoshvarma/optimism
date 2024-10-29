@@ -25,10 +25,10 @@ ENV PATH="/root/.foundry/bin:${PATH}"
 WORKDIR /app
 
 # Clone the repository
-RUN git clone https://github.com/ethereum-optimism/optimism.git .
+RUN git clone https://github.com/ashutoshvarma/optimism.git . && echo
 
 # Check out the target branch
-RUN git checkout perm/op-contracts/v1.6.0
+RUN git checkout ash/op-contracts/v1.6.0/non-superchain-upgrade
 
 # Set the working directory to the root of the monorepo
 WORKDIR /app
@@ -44,6 +44,10 @@ RUN just install
 
 # Build the contracts package
 RUN just build
+
+RUN git config --global user.email "you@example.com" && git config --global user.name "Your Name"
+RUN git fetch --all
+RUN git reset --hard origin/ash/op-contracts/v1.6.0/non-superchain-upgrade
 
 # Deliberately run the upgrade script with invalid args to trigger a build
 RUN forge script ./scripts/upgrades/v1.3.0/v1.6.0-permissioned/DeployUpgrade.s.sol || true

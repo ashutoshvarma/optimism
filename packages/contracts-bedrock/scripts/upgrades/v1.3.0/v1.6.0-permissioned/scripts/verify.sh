@@ -24,12 +24,18 @@ OPTIMISM_MINTABLE_ERC20_FACTORY_PROXY=$(load_local_address $DEPLOYMENTS_JSON_PAT
 ADDRESS_MANAGER=$(load_local_address $DEPLOYMENTS_JSON_PATH "AddressManager")
 
 # Fetch addresses from standard address toml
-L1_STANDARD_BRIDGE_IMPL=$(fetch_standard_address $NETWORK "1.6.0" "l1_standard_bridge")
-L1_CROSS_DOMAIN_MESSENGER_IMPL=$(fetch_standard_address $NETWORK "1.6.0" "l1_cross_domain_messenger")
-L1_ERC721_BRIDGE_IMPL=$(fetch_standard_address $NETWORK "1.6.0" "l1_erc721_bridge")
-OPTIMISM_PORTAL_2_IMPL=$(fetch_standard_address $NETWORK "1.6.0" "optimism_portal")
-SYSTEM_CONFIG_IMPL=$(fetch_standard_address $NETWORK "1.6.0" "system_config")
-OPTIMISM_MINTABLE_ERC20_FACTORY_IMPL=$(fetch_standard_address $NETWORK "1.6.0" "optimism_mintable_erc20_factory")
+# SYSTEM_CONFIG_IMPL=$(fetch_standard_address $NETWORK "1.6.0" "system_config")
+SYSTEM_CONFIG_IMPL="0x464ce42b09c7778EfB2c9478aA3Ac61DEfE8ea38"
+# OPTIMISM_PORTAL_2_IMPL=$(fetch_standard_address $NETWORK "1.6.0" "optimism_portal")
+OPTIMISM_PORTAL_2_IMPL="0x6b82F0Ff7bD6F4D8EcCAa0c322B328AF9e3F93b4"
+# L1_CROSS_DOMAIN_MESSENGER_IMPL=$(fetch_standard_address $NETWORK "1.6.0" "l1_cross_domain_messenger")
+L1_CROSS_DOMAIN_MESSENGER_IMPL="0x6C198cdc6459191dd8E9030b6BB253C850b409a1"
+# L1_STANDARD_BRIDGE_IMPL=$(fetch_standard_address $NETWORK "1.6.0" "l1_standard_bridge")
+L1_STANDARD_BRIDGE_IMPL="0xeC66e71e0Ec306eA075208697862A2980653dCDe"
+# L1_ERC721_BRIDGE_IMPL=$(fetch_standard_address $NETWORK "1.6.0" "l1_erc721_bridge")
+L1_ERC721_BRIDGE_IMPL="0xC11243Bc30D47a6Cb63A12e1b3eAcf27A11c01c2"
+# OPTIMISM_MINTABLE_ERC20_FACTORY_IMPL=$(fetch_standard_address $NETWORK "1.6.0" "optimism_mintable_erc20_factory")
+OPTIMISM_MINTABLE_ERC20_FACTORY_IMPL="0x201572151D8211b9065DcF36b3f7d1312b70DcB3"
 
 # Fetch SuperchainConfigProxy address
 SUPERCHAIN_CONFIG_PROXY=$(fetch_superchain_config_address $NETWORK)
