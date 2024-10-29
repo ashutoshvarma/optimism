@@ -22,12 +22,12 @@ OPTIMISM_PORTAL_PROXY=$(load_local_address $DEPLOYMENTS_JSON_PATH "OptimismPorta
 SYSTEM_CONFIG_PROXY=$(load_local_address $DEPLOYMENTS_JSON_PATH "SystemConfigProxy")
 OPTIMISM_MINTABLE_ERC20_FACTORY_PROXY=$(load_local_address $DEPLOYMENTS_JSON_PATH "OptimismMintableERC20FactoryProxy")
 ADDRESS_MANAGER=$(load_local_address $DEPLOYMENTS_JSON_PATH "AddressManager")
-OPTIMISM_PORTAL_2_IMPL=$(load_local_address "deployments.json" "OptimismPortal2")
 
 # Fetch addresses from standard address toml
 L1_STANDARD_BRIDGE_IMPL=$(fetch_standard_address $NETWORK "1.6.0" "l1_standard_bridge")
 L1_CROSS_DOMAIN_MESSENGER_IMPL=$(fetch_standard_address $NETWORK "1.6.0" "l1_cross_domain_messenger")
 L1_ERC721_BRIDGE_IMPL=$(fetch_standard_address $NETWORK "1.6.0" "l1_erc721_bridge")
+OPTIMISM_PORTAL_2_IMPL=$(fetch_standard_address $NETWORK "1.6.0" "optimism_portal")
 SYSTEM_CONFIG_IMPL=$(fetch_standard_address $NETWORK "1.6.0" "system_config")
 OPTIMISM_MINTABLE_ERC20_FACTORY_IMPL=$(fetch_standard_address $NETWORK "1.6.0" "optimism_mintable_erc20_factory")
 
